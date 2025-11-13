@@ -131,7 +131,7 @@ flutter build windows --release
 3. **Back to Homepage and go nuts**
 
 
-## 目录结构
+## Directory Structure
 ```text
 lib/
 ├─ constants/        # configuration files
