@@ -56,6 +56,7 @@ flutter build windows --release
 
 
 ## 目录结构
+```text
 lib/
 ├─ constants/        # 配置文件
 ├─ database/         # sqlite数据库
@@ -67,6 +68,7 @@ lib/
 assets/
 ├─ fonts/            # 自定义字体
 └─ images/           # 图标/占位图
+```
 
 
 
@@ -130,6 +132,7 @@ flutter build windows --release
 
 
 ## 目录结构
+```text
 lib/
 ├─ constants/        # configuration files
 ├─ database/         # sqlite database
@@ -141,6 +144,7 @@ lib/
 assets/
 ├─ fonts/            # Custom fonts
 └─ images/           # Icons / placeholders
+```
 
 
 
