@@ -117,4 +117,9 @@ class MultiLanguageStrings {
     Language.zh: 'api key删除成功'
   };
 
+  static Map<Language, String> analyzeTitle = {
+    Language.en: 'Analyze Report',
+    Language.zh: '数据分析'
+  };
+
 }

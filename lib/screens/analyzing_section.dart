@@ -1,3 +1,4 @@
+import 'package:adaptive_scrollbar/adaptive_scrollbar.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +6,7 @@ import 'package:serpapi_price_tool_sample/providers/product_provider.dart';
 import 'package:serpapi_price_tool_sample/screens/widgets/ai_analyze_section.dart';
 import 'package:serpapi_price_tool_sample/screens/widgets/charts.dart';
 import 'package:serpapi_price_tool_sample/screens/widgets/charts2.dart';
+import 'package:serpapi_price_tool_sample/screens/widgets/product_card.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
@@ -25,20 +27,18 @@ class AnalyzingSection extends StatefulWidget {
 }
 
 class _AnalyzingSection extends State<AnalyzingSection> {
+  final ScrollController _scrollController = ScrollController();
 
-  LanguageSetting? selectedLanguage;
 
   @override
   void initState() {
     super.initState();
-    loadLanguageSetting();
   }
 
-  Future<void> loadLanguageSetting() async {
-    LanguageSetting languageSetting = context.read<LanguageProvider>().languageSetting;
-    setState(() {
-      selectedLanguage = languageSetting;
-    });
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,12 +54,65 @@ class _AnalyzingSection extends State<AnalyzingSection> {
       padding: const EdgeInsets.only(bottom: 80),
       child: Column(
         children: [
+
+          SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: AdaptiveScrollbar(
+              controller: _scrollController,
+              position: ScrollbarPosition.bottom,
+              width: 10,
+              sliderActiveColor: Colors.white,
+              sliderDefaultColor: Colors.white,
+              underColor: AppColors.halfTransparent,
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                controller: _scrollController,
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                child: Consumer<ProductProvider>(
+                    builder: (context, productProvider, child) {
+                      return Row(
+                        spacing: 15,
+                        children: List.generate(
+                          productProvider.productList.length,
+                            (index) {
+                              return ProductCard(
+                                product: productProvider.productList[index]
+                              );
+                            }
+                        ),
+                      );
+                    }
+                )
+              ),
+            ),
+          ),
+
           Container(
-            height: 400,
+            height: 500,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 75),
-              child: BarChartSample1(
-                productName: widget.productName,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Consumer<LanguageProvider>(
+                    builder: (context, languageProvider, child) {
+                      return Text(
+                        '${widget.productName} ${MultiLanguageStrings.analyzeTitle[languageProvider.languageSetting.language]!}',
+                        style: AppTypography.grand(
+                            context,
+                            color: AppColors.primary
+                        ),
+                      );
+                    }
+                  ),
+
+                  PriceBarChart(
+                    productName: widget.productName,
+                  ),
+                ],
               ),
           ),
 

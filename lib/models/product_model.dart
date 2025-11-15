@@ -14,7 +14,7 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       map['title'],
-      map['thumbnail'],
+      map['serpapi_thumbnail'],
       map['source'],
       map['extracted_price']
     );

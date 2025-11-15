@@ -10,11 +10,11 @@ import 'package:serpapi_price_tool_sample/models/product_model.dart';
 import 'package:serpapi_price_tool_sample/providers/language_provider.dart';
 import 'package:serpapi_price_tool_sample/providers/product_provider.dart';
 
-class BarChartSample1 extends StatefulWidget {
+class PriceBarChart extends StatefulWidget {
   final String productName;
 
   @override
-  const BarChartSample1({
+  const PriceBarChart({
     super.key,
     required this.productName
   });
@@ -24,10 +24,10 @@ class BarChartSample1 extends StatefulWidget {
   final Color touchedBarColor = AppColors.darker;
 
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() => _PriceBarChart();
 }
 
-class BarChartSample1State extends State<BarChartSample1> {
+class _PriceBarChart extends State<PriceBarChart> {
   int touchedIndex = -1;
 
   @override
@@ -135,7 +135,7 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
-  ///左侧标识
+  ///柱体
   BarChartData mainBarData() {
     return BarChartData(
       barTouchData: BarTouchData(
@@ -143,7 +143,7 @@ class BarChartSample1State extends State<BarChartSample1> {
         touchTooltipData: BarTouchTooltipData(
           getTooltipColor: (_) => AppColors.halfTransparent.withAlpha(120),
           tooltipHorizontalAlignment: FLHorizontalAlignment.right,
-          tooltipMargin: 0,
+          tooltipMargin: -25,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
             String sourceName = context.read<ProductProvider>().productList[group.x].source;
             String productName = context.read<ProductProvider>().productList[group.x].title;
@@ -154,15 +154,15 @@ class BarChartSample1State extends State<BarChartSample1> {
                   '$sourceName\n\n',
               const TextStyle(
                 color: AppColors.primary,
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
+                fontWeight: FontWeight.w400,
+                fontSize: 11,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text: ((rod.toY - 1).toStringAsFixed(2)).toString(),
                   style: const TextStyle(
-                    color: AppColors.primary, //widget.touchedBarColor,
-                    fontSize: 13,
+                    color: AppColors.darker,
+                    fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
