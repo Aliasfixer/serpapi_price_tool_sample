@@ -1,12 +1,8 @@
-import 'dart:async';
-import 'dart:math';
 
-import 'package:decimal/decimal.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:serpapi_price_tool_sample/constants/config.dart';
-import 'package:serpapi_price_tool_sample/models/product_model.dart';
 import 'package:serpapi_price_tool_sample/providers/language_provider.dart';
 import 'package:serpapi_price_tool_sample/providers/product_provider.dart';
 

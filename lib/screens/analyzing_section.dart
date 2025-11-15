@@ -1,5 +1,4 @@
 import 'package:adaptive_scrollbar/adaptive_scrollbar.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:serpapi_price_tool_sample/providers/product_provider.dart';
@@ -11,7 +10,6 @@ import 'package:serpapi_price_tool_sample/screens/widgets/product_card.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
 import '../constants/multi_language_strings.dart';
-import '../models/language_setting.dart';
 import '../providers/language_provider.dart';
 
 class AnalyzingSection extends StatefulWidget {
